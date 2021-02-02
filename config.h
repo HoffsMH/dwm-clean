@@ -47,7 +47,7 @@ static const Layout layouts[] = {
   { "ﱖ  ",      tile },    /* first entry is default */
   { "﯑ ",      NULL },    /* no layout function means floating behavior */
   { " ",   monocle },
-  // { "﬷    ",      deck },
+  { "﬷    ",      deck },
   { NULL,       NULL },
 };
 
