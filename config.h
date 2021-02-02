@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 // full gaps toggle patch
-static const Gap default_gap        = {.isgap = 1, .realgap = 10, .gappx = 10};
+static const Gap default_gap        = {.isgap = 1, .realgap = 60, .gappx = 60};
 
 /* appearance */
 static const unsigned int borderpx  = 10;        /* border pixel of windows */
