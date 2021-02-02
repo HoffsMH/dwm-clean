@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
-// full gaps patch
-static const unsigned int gappx     = 70;        /* gaps between windows */
+// full gaps toggle patch
+static const Gap default_gap        = {.isgap = 1, .realgap = 10, .gappx = 10};
 
 /* appearance */
 static const unsigned int borderpx  = 10;        /* border pixel of windows */
@@ -30,11 +30,11 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-  { "Brave",  NULL,       NULL,         1 << 2,       0,           0,           -1 },
-  { "Slack",  NULL,       NULL,         1 << 3,       0,           0,           -1 },
-  { "discord",  NULL,       NULL,       1 << 3,       0,           0,           -1 },
-  { "chrome",  NULL,       NULL,        1 << 1,       0,           0,           -1 },
-  { "Peek",     NULL,       NULL,       0,            1,           1,           -1 },
+  { "Brave",  NULL,       NULL,         1 << 2,       0,           -1 },
+  { "Slack",  NULL,       NULL,         1 << 3,       0,           -1 },
+  { "discord",  NULL,       NULL,       1 << 3,       0,           -1 },
+  { "chrome",  NULL,       NULL,        1 << 1,       0,           -1 },
+  { "Peek",     NULL,       NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -103,8 +103,8 @@ static Key keys[] = {
   { MODKEY,                       XK_r, focusmon,            {.i = +1 } },
   { MODKEY|ShiftMask,             XK_e,  tagmon,         {.i = -1 } },
   { MODKEY|ShiftMask,             XK_r, tagmon,         {.i = +1 } },
-  // { MODKEY|ShiftMask,             XK_n,  setgaps,        {.i = -2 } },
-  // { MODKEY|ShiftMask,             XK_m,  setgaps,        {.i = +2 } },
+  { MODKEY|ShiftMask,             XK_n,  setgaps,        {.i = -2 } },
+  { MODKEY|ShiftMask,             XK_m,  setgaps,        {.i = +2 } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
