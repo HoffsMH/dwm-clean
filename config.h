@@ -21,6 +21,19 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
 
+typedef struct {
+	const char *name;
+	const void *cmd;
+} Sp;
+const char *spcmd1[] = {"kitty", "--name", "kittyscratch", "tmux", "attach", NULL };
+/* const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", "-e", "ranger", NULL }; */
+/* const char *spcmd3[] = {"keepassxc", NULL }; */
+static Sp scratchpads[] = {
+	/* name          cmd  */
+	{"kittyscratch",      spcmd1},
+};
+
+
 /* tagging */
 static const char *tags[] = { "", "", "", "", "", "" };
 
@@ -30,11 +43,14 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-  { "Brave",  NULL,       NULL,         1 << 2,       0,           -1 },
-  { "Slack",  NULL,       NULL,         1 << 3,       0,           -1 },
-  { "discord",  NULL,       NULL,       1 << 3,       0,           -1 },
-  { "chrome",  NULL,       NULL,        1 << 1,       0,           -1 },
-  { "Peek",     NULL,       NULL,       0,            1,           -1 },
+	{ "Brave",  NULL,       NULL,         1 << 2,       0,           -1 },
+	{ "Slack",  NULL,       NULL,         1 << 3,       0,           -1 },
+	{ "discord",  NULL,       NULL,       1 << 3,       0,           -1 },
+	{ "chrome",  NULL,       NULL,        1 << 1,       0,           -1 },
+	{ "Peek",     NULL,       NULL,       0,            1,           -1 },
+	{ NULL,		"kittyscratch",	NULL,	SPTAG(0),	1,		-1 },
+	/* { NULL,		"spfm",		NULL,	SPTAG(1),	1,		-1 }, */
+	/* { NULL,		 "keepassxc",	NULL,	SPTAG(2),	0,		-1 }, */
 };
 
 /* layout(s) */
@@ -94,6 +110,10 @@ static Key keys[] = {
   { MODKEY,                       XK_p,      setlayout,      {.v = &layouts[2]} },
   { MODKEY,                       XK_y,      setlayout,      {.v = &layouts[3]} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+
+	{ MODKEY,            		XK_space,  	   togglescratch,  {.ui = 0 } },
+	/* { MODKEY,            		XK_u,	   togglescratch,  {.ui = 1 } }, */
+	/* { MODKEY,            		XK_x,	   togglescratch,  {.ui = 2 } }, */
   { MODKEY,                       XK_e,  focusmon,           {.i = -1 } },
   { MODKEY,                       XK_r, focusmon,            {.i = +1 } },
   { MODKEY|ShiftMask,             XK_e,  tagmon,         {.i = -1 } },
