@@ -26,11 +26,13 @@ typedef struct {
 	const void *cmd;
 } Sp;
 const char *spcmd1[] = {"kitty", "--name", "kittyscratch", "tmux", "attach", NULL };
-/* const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", "-e", "ranger", NULL }; */
-/* const char *spcmd3[] = {"keepassxc", NULL }; */
+const char *spcmd2[] = {"mpv", NULL };
+const char *spcmd3[] = {"kitty" "--name", "capture", "nvim", "/home/hoffs/personal/00-capture/capture.md", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"kittyscratch",      spcmd1},
+	{"mpv", NULL},
+	{"capture", spcmd3}
 };
 
 
@@ -48,7 +50,9 @@ static const Rule rules[] = {
 	{ "discord",  NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "chrome",  NULL,       NULL,        1 << 1,       0,           -1 },
 	{ "Peek",     NULL,       NULL,       0,            1,           -1 },
-	{ NULL,		"kittyscratch",	NULL,	SPTAG(0),	1,		-1 },
+	{ NULL,		"kittyscratch",	NULL,	SPTAG(0),   0,		-1 },
+	{ "mpv",	NULL,		NULL,	SPTAG(1),     0,		-1 },
+	{ NULL,		"capture",	NULL,	SPTAG(2),   1,		-1 },
 	/* { NULL,		"spfm",		NULL,	SPTAG(1),	1,		-1 }, */
 	/* { NULL,		 "keepassxc",	NULL,	SPTAG(2),	0,		-1 }, */
 };
@@ -114,8 +118,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 
 	{ MODKEY,            		XK_space,  	   togglescratch,  {.ui = 0 } },
-	/* { MODKEY,            		XK_u,	   togglescratch,  {.ui = 1 } }, */
-	/* { MODKEY,            		XK_x,	   togglescratch,  {.ui = 2 } }, */
+	{ MODKEY,            		XK_m,  	   togglescratch,  {.ui = 1 } },
+	{ MODKEY,            		XK_c,  	   togglescratch,  {.ui = 2 } },
+
+	/* { MODKEY,           		XK_m,      toggleview,     {.ui = 1 << 4} }, \ */
   { MODKEY,                       XK_e,  focusmon,           {.i = -1 } },
   { MODKEY,                       XK_r, focusmon,            {.i = +1 } },
   { MODKEY|ShiftMask,             XK_e,  tagmon,         {.i = -1 } },
@@ -128,6 +134,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
 	TAGKEYS(                        XK_6,                      5)
+	TAGKEYS(XK_q, 0)
+	TAGKEYS(XK_w, 1)
+	TAGKEYS(XK_a, 2)
+	TAGKEYS(XK_z, 3)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
