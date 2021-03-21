@@ -25,14 +25,14 @@ typedef struct {
 	const char *name;
 	const void *cmd;
 } Sp;
-const char *spcmd1[] = {"kitty", "--name", "kittyscratch", "tmux", "attach", NULL };
+const char *spcmd1[] = {"kitty", "--name", "kittytaskell", "taskell", "/home/hoffs/personal/00-capture/board/taskell.md", NULL };
 const char *spcmd2[] = {"mpv", NULL };
-const char *spcmd3[] = {"kitty" "--name", "capture", "nvim", "/home/hoffs/personal/00-capture/capture.md", NULL };
+const char *spcmd3[] = {"kitty", "--name", "kittyscratch", "tmux", "attach", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
-	{"kittyscratch",      spcmd1},
+	{"kittytaskell",      spcmd1},
 	{"mpv", NULL},
-	{"capture", spcmd3}
+	{"kittyscratch", spcmd3},
 };
 
 
@@ -50,9 +50,9 @@ static const Rule rules[] = {
 	{ "discord",  NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "chrome",  NULL,       NULL,        1 << 1,       0,           -1 },
 	{ "Peek",     NULL,       NULL,       0,            1,           -1 },
-	{ NULL,		"kittyscratch",	NULL,	SPTAG(0),   0,		-1 },
-	{ "mpv",	NULL,		NULL,	SPTAG(1),     0,		-1 },
-	{ NULL,		"capture",	NULL,	SPTAG(2),   1,		-1 },
+	{ NULL,		"kittytaskell",	NULL,	SPTAG(0),   0,		-1 },
+	{ "mpv",	NULL,		NULL,	SPTAG(1),   0,	        -1 },
+	{ NULL,	     "kittyscratch",	NULL,	        SPTAG(2),   0,		-1 },
 	/* { NULL,		"spfm",		NULL,	SPTAG(1),	1,		-1 }, */
 	/* { NULL,		 "keepassxc",	NULL,	SPTAG(2),	0,		-1 }, */
 };
@@ -110,6 +110,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY|ShiftMask,             XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
+	{ MODKEY,                       XK_semicolon, zoom,           {0} },
   { ControlMask,                  XK_q,      killclient,     {0} },
   { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
@@ -117,9 +118,10 @@ static Key keys[] = {
   { MODKEY,                       XK_y,      setlayout,      {.v = &layouts[3]} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 
-	{ MODKEY,            		XK_space,  	   togglescratch,  {.ui = 0 } },
+	{ MODKEY,            		XK_BackSpace,  	   togglescratch,  {.ui = 2 } },
+	{ MODKEY,            		XK_space,  	   togglescratch,  {.ui = 2 } },
 	{ MODKEY,            		XK_m,  	   togglescratch,  {.ui = 1 } },
-	{ MODKEY,            		XK_c,  	   togglescratch,  {.ui = 2 } },
+	{ MODKEY,            		XK_s,  	   togglescratch,  {.ui = 0 } },
 
 	/* { MODKEY,           		XK_m,      toggleview,     {.ui = 1 << 4} }, \ */
   { MODKEY,                       XK_e,  focusmon,           {.i = -1 } },
