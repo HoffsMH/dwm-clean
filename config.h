@@ -27,7 +27,7 @@ typedef struct {
 } Sp;
 const char *spcmd1[] = {"kitty", "--name", "kittytaskell", "taskell", "/home/hoffs/personal/00-capture/board/taskell.md", NULL };
 const char *spcmd2[] = {"mpv", NULL };
-const char *spcmd3[] = {"kitty", "--name", "kittyscratch", "tmux", "attach", NULL };
+const char *spcmd3[] = {"kitty", "--name", "kittyscratch", "scratch", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"kittytaskell",      spcmd1},
